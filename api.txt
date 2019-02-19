@@ -1,43 +1,42 @@
-   GET	/api/settings
-  POST	/api/settings
-  POST	/api/credentials
-   GET	/api/telemetry
-  POST	/api/telemetry
-  POST	/api/telemetry/test_message
-DELETE	/api/errors/clear
-DELETE	/api/errors/(?P<v0>[/]+)
-   GET	/api/errors/(?P<v0>[/]+)
-   GET	/api/errors
-   GET	/api/health_stats
-   GET	/api/dashboard
-  POST	/api/dashboard
-  POST	/api/display/on
-  POST	/api/display/off
-  POST	/api/display
-   GET	/api/display
+   GET	^/api/macros$
+   PUT	^/api/macros$
+   GET	^/api/macros/(?P<v0>[^/]+)$
+  POST	^/api/macros/(?P<v0>[^/]+)$
+DELETE	^/api/macros/(?P<v0>[^/]+)$
 
-  POST	/api/inlets/(?P<v0>[/]+)/read
-  POST	/api/jacks/(?P<v0>[/]+)/control
-  POST	/api/analog_inputs/(?P<v0>[/]+)/read
-  POST	/api/equipment/(?P<v0>[/]+)/control
-   GET	/api/tcs/sensors
-   GET	/api/tcs/(?P<v0>[/]+)/usage
-   GET	/api/doser/pumps/(?P<v0>[/]+)/usage
-  POST	/api/doser/pumps/(?P<v0>[/]+)/calibrate
-  POST	/api/doser/pumps/(?P<v0>[/]+)/schedule
-   GET	/api/phprobes/(?P<v0>[/]+)/readings
-  POST	/api/phprobes/(?P<v0>[/]+)/calibrate
-   GET	/api/atos/(?P<v0>[/]+)/usage
-  POST	/api/macros/(?P<v0>[/]+)/run
+   GET	^/api/settings$
+  POST	^/api/settings$
+  POST	^/api/credentials$
+   GET	^/api/health_stats$
 
-   GET	/api/macros
-   PUT	/api/macros
-   GET	/api/macros/(?P<v0>[/]+)
-  POST	/api/macros/(?P<v0>[/]+)
-DELETE	/api/macros/(?P<v0>[/]+)
+   GET	^/api/outlets/(?P<v0>[^/]+)$
+  POST	^/api/inlets/(?P<v0>[^/]+)/read$
+  POST	^/api/jacks/(?P<v0>[^/]+)/control$
+  POST	^/api/analog_inputs/(?P<v0>[^/]+)/read$
 
-   GET	/api/camera/config
-  POST	/api/camera/config
-  POST	/api/camera/shoot
-   GET	/api/camera/latest
-   GET	/api/camera/list
+  POST	^/api/equipment/(?P<v0>[^/]+)/control$
+   GET	^/api/atos/(?P<v0>[^/]+)/usage$
+   GET	^/api/tcs/sensors$
+   GET	^/api/tcs/(?P<v0>[^/]+)/usage$
+   GET	^/api/doser/pumps/(?P<v0>[^/]+)/usage$
+  POST	^/api/doser/pumps/(?P<v0>[^/]+)/calibrate$
+  POST	^/api/doser/pumps/(?P<v0>[^/]+)/schedule$
+   GET	^/api/phprobes/(?P<v0>[^/]+)/readings$
+  POST	^/api/phprobes/(?P<v0>[^/]+)/calibrate$
+  POST	^/api/macros/(?P<v0>[^/]+)/run$
+
+   GET	^/api/telemetry$
+  POST	^/api/telemetry$
+   GET	^/api/dashboard$
+  POST	^/api/dashboard$
+  POST	^/api/telemetry/test_message$
+DELETE	^/api/errors/clear$
+DELETE	^/api/errors/(?P<v0>[^/]+)$
+   GET	^/api/errors/(?P<v0>[^/]+)$
+   GET	^/api/errors$
+   GET	^/api/me$
+
+  POST	^/api/display/on$
+  POST	^/api/display/off$
+  POST	^/api/display$
+   GET	^/api/display$
