@@ -6,7 +6,7 @@ import (
 )
 
 func TestOutlets(t *testing.T) {
-	c := siginIn(t)
+	c := signIn(t)
 	o := Outlet{
 		Name:   "foo",
 		Pin:    23,
@@ -32,4 +32,5 @@ func TestOutlets(t *testing.T) {
 	if err := c.DeleteOutlet("1"); err != nil {
 		t.Error(err)
 	}
+	c.SignOut()
 }

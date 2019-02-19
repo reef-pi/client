@@ -6,7 +6,7 @@ import (
 )
 
 func TestAnalogInputs(t *testing.T) {
-	c := siginIn(t)
+	c := signIn(t)
 	o := AnalogInput{
 		Name: "foo",
 	}

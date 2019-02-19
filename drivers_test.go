@@ -7,7 +7,7 @@ import (
 )
 
 func TestDrivers(t *testing.T) {
-	c := siginIn(t)
+	c := signIn(t)
 	config := `{"address":64,"frequency":800}`
 	o := Driver{
 		Name:   "foo",
@@ -34,4 +34,5 @@ func TestDrivers(t *testing.T) {
 	if err := c.DeleteDriver("1"); err != nil {
 		t.Error(err)
 	}
+	c.SignOut()
 }

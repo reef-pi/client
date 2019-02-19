@@ -6,7 +6,7 @@ import (
 )
 
 func TestInlets(t *testing.T) {
-	c := siginIn(t)
+	c := signIn(t)
 	o := Inlet{
 		Name:   "baz",
 		Pin:    21,
@@ -32,5 +32,6 @@ func TestInlets(t *testing.T) {
 	if err := c.DeleteInlet("1"); err != nil {
 		t.Error(err)
 	}
+	c.SignOut()
 
 }

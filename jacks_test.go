@@ -6,7 +6,7 @@ import (
 )
 
 func TestJacks(t *testing.T) {
-	c := siginIn(t)
+	c := signIn(t)
 	o := Jack{
 		Name:   "test-jack",
 		Pins:   []int{0},
@@ -32,4 +32,5 @@ func TestJacks(t *testing.T) {
 	if err := c.DeleteJack("1"); err != nil {
 		t.Error(err)
 	}
+	c.SignOut()
 }

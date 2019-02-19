@@ -6,7 +6,7 @@ import (
 )
 
 func TestEquipment(t *testing.T) {
-	c := siginIn(t)
+	c := signIn(t)
 	o := Equipment{
 		Name: "client-test-equipment",
 	}
@@ -45,4 +45,5 @@ func TestEquipment(t *testing.T) {
 	if err := c.DeleteEquipment("1"); err != nil {
 		t.Error(err)
 	}
+	c.SignOut()
 }

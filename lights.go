@@ -14,14 +14,11 @@ type Channel struct {
 	Color    string  `json:"color"`
 	Profile  Profile `json:"profile"`
 }
-
 type Light struct {
-	ID        string `json:"id"`
-	Name      string `json:"name"`
-	Pin       int    `json:"pin"`
-	Equipment string `json:"equipment"`
-	Reverse   bool   `json:"reverse"`
-	Driver    string `json:"driver"`
+	ID       string          `json:"id"`
+	Name     string          `json:"name"`
+	Channels map[int]Channel `json:"channels"`
+	Jack     string          `json:"jack"`
 }
 
 type Profile struct {

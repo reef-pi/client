@@ -31,15 +31,16 @@ type Capabilities struct {
 	Configuration bool `json:"configuration"`
 }
 
-func (c *client) SignOut() error {
-	return c.get("/auth/signout", nil)
-}
 func (c *client) SignIn(u, p string) error {
 	cred := credential{
 		User:     u,
 		Password: p,
 	}
 	return c.post("/auth/signin", &cred)
+}
+
+func (c *client) SignOut() error {
+	return c.get("/auth/signout", nil)
 }
 
 func (c *client) Capabilities() (Capabilities, error) {

@@ -6,7 +6,7 @@ import (
 )
 
 func TestATOs(t *testing.T) {
-	c := siginIn(t)
+	c := signIn(t)
 	o := ATO{
 		Inlet:   "1",
 		Pump:    "1",
