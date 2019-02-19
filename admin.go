@@ -9,12 +9,6 @@ import (
 )
 */
 
-/*
-  GET	/api/capabilities
-  POST	/api/admin/poweroff
-  POST	/api/admin/reboot
-  POST	/api/admin/reload
-*/
 type Capabilities struct {
 	DevMode       bool `json:"dev_mode"`
 	Dashboard     bool `json:"dashboard"`

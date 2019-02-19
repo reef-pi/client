@@ -4,7 +4,7 @@ VERSION=$(shell git describe --always --tags)
 
 .PHONY: test
 test:
-	go test -cover -race ./...
+	go test -count=1 -cover -race ./...
 
 .PHONY: vet
 vet:

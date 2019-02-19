@@ -28,22 +28,22 @@ type Schedule struct {
 
 func (c *client) Dosers() ([]Pump, error) {
 	var dosers []Pump
-	return dosers, c.get("/api/dosers", &dosers)
+	return dosers, c.get("/api/doser/pumps", &dosers)
 }
 
 func (c *client) Doser(id string) (Pump, error) {
 	var doser Pump
-	return doser, c.get("/api/dosers/"+id, &doser)
+	return doser, c.get("/api/doser/pumps/"+id, &doser)
 }
 
 func (c *client) CreateDoser(o Pump) error {
-	return c.put("/api/dosers", &o)
+	return c.put("/api/doser/pumps", &o)
 }
 
 func (c *client) DeleteDoser(id string) error {
-	return c.delete("/api/dosers/" + id)
+	return c.delete("/api/doser/pumps/" + id)
 }
 
 func (c *client) UpdateDoser(id string, o Pump) error {
-	return c.post("/api/dosers/"+id, &o)
+	return c.post("/api/doser/pumps/"+id, &o)
 }
