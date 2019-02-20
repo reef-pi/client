@@ -10,7 +10,7 @@ func TestDrivers(t *testing.T) {
 	c := signIn(t)
 	config := `{"address":64,"frequency":800}`
 	o := Driver{
-		Name:   "foo",
+		Name:   "client-test-driver",
 		Type:   "pca9685",
 		Config: json.RawMessage(config),
 	}
@@ -24,7 +24,7 @@ func TestDrivers(t *testing.T) {
 	for _, o := range ds {
 		fmt.Println(o.Name)
 	}
-	o.Name = "Bar"
+	o.Name = "client-test-driver-updated"
 	if err := c.UpdateDriver("1", o); err != nil {
 		t.Error(err)
 	}

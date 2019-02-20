@@ -37,7 +37,7 @@ func TestAnalogInputs(t *testing.T) {
 	for _, o := range as {
 		fmt.Println(o.Name)
 	}
-	o.Name = "Bar"
+	o.Name = "client-test-analog-input-updated"
 	if err := c.UpdateAnalogInput("1", o); err != nil {
 		t.Error(err)
 	}

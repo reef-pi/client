@@ -1,19 +1,5 @@
 package cluster
 
-import (
-	"time"
-)
-
-type Probe struct {
-	ID          string        `json:"id"`
-	Name        string        `json:"name"`
-	Enable      bool          `json:"enable"`
-	Period      time.Duration `json:"period"`
-	AnalogInput string        `json:"analog_input"`
-	Control     bool          `json:"control"`
-	Notify      Notify        `json:"notify"`
-}
-
 func (c *client) PhProbes() ([]Probe, error) {
 	var probes []Probe
 	return probes, c.get("/api/phprobes", &probes)
@@ -34,4 +20,13 @@ func (c *client) DeletePhProbe(id string) error {
 
 func (c *client) UpdatePhProbe(id string, o Probe) error {
 	return c.post("/api/phprobes/"+id, &o)
+}
+
+func (c *client) CalibratePhProbe(id string, cal CalibrationDetails) error {
+	return c.post("/api/phprobes/"+id+"/calibrate", &cal)
+}
+
+func (c *client) PhProbeReadings(id string) (StatsResponse, error) {
+	var s StatsResponse
+	return s, c.get("/api/phprobes/"+id+"/readings", &s)
 }

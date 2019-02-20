@@ -36,7 +36,7 @@ func TestTimers(t *testing.T) {
 	for _, o := range timers {
 		fmt.Println(o.Name)
 	}
-	o.Name = "Bar"
+	o.Name = "client-test-timer-updated"
 	if err := c.UpdateTimer("1", o); err != nil {
 		t.Error(err)
 	}

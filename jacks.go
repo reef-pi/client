@@ -1,12 +1,5 @@
 package cluster
 
-type Jack struct {
-	ID     string `json:"id"`
-	Name   string `json:"name"`
-	Pins   []int  `json:"pins"`
-	Driver string `json:"driver"` // can be either hal or pca9685
-}
-
 func (c *client) Jacks() ([]Jack, error) {
 	var jacks []Jack
 	return jacks, c.get("/api/jacks", &jacks)
@@ -27,4 +20,8 @@ func (c *client) DeleteJack(id string) error {
 
 func (c *client) UpdateJack(id string, o Jack) error {
 	return c.post("/api/jacks/"+id, &o)
+}
+
+func (c *client) ControlJack(id string, p PinValues) error {
+	return c.post("/api/jacks/"+id+"/control", &p)
 }

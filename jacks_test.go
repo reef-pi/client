@@ -22,7 +22,7 @@ func TestJacks(t *testing.T) {
 	for _, o := range jacks {
 		fmt.Println(o.Name)
 	}
-	o.Name = "Bar"
+	o.Name = "client-test-jack-updated"
 	if err := c.UpdateJack("1", o); err != nil {
 		t.Error(err)
 	}

@@ -26,7 +26,7 @@ func TestATOs(t *testing.T) {
 	for _, o := range atos {
 		fmt.Println(o.Name)
 	}
-	o.Name = "Bar"
+	o.Name = "client-test-ato-updated"
 	if err := c.UpdateATO("1", o); err != nil {
 		t.Error(err)
 	}

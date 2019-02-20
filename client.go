@@ -15,11 +15,6 @@ type client struct {
 	c *http.Client
 }
 
-type credential struct {
-	User     string `json:"user"`
-	Password string `json:"password"`
-}
-
 func NewClient(u string) (*client, error) {
 	jar, err := cookiejar.New(nil)
 	if err != nil {
@@ -48,11 +43,9 @@ func (c *client) get(p string, v interface{}) error {
 	if v == nil {
 		return nil
 	}
-	err = json.NewDecoder(resp.Body).Decode(v)
-	return err
+	return json.NewDecoder(resp.Body).Decode(v)
 }
-
-func (c *client) post(p string, v interface{}) error {
+func (c *client) postWithResponse(p string, v interface{}, ret interface{}) error {
 	buf := new(bytes.Buffer)
 	if v != nil {
 		if err := json.NewEncoder(buf).Encode(v); err != nil {
@@ -72,7 +65,14 @@ func (c *client) post(p string, v interface{}) error {
 		body, _ := ioutil.ReadAll(resp.Body)
 		return fmt.Errorf("Failed http request. Status:%d, Error:%s", resp.StatusCode, string(body))
 	}
-	return nil
+	if ret == nil {
+		return nil
+	}
+	return json.NewDecoder(resp.Body).Decode(ret)
+}
+
+func (c *client) post(p string, v interface{}) error {
+	return c.postWithResponse(p, v, nil)
 }
 func (c *client) put(p string, v interface{}) error {
 	buf := new(bytes.Buffer)

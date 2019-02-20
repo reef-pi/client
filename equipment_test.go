@@ -38,7 +38,7 @@ func TestEquipment(t *testing.T) {
 	for _, o := range equipment {
 		fmt.Println(o.Name)
 	}
-	o.Name = "Bar"
+	o.Name = "client-test-equipment-updated"
 	if err := c.UpdateEquipment("1", o); err != nil {
 		t.Error(err)
 	}

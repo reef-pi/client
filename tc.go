@@ -1,32 +1,5 @@
 package cluster
 
-import (
-	"time"
-)
-
-type TC struct {
-	ID         string        `json:"id"`
-	Name       string        `json:"name"`
-	Max        float64       `json:"max"`
-	Min        float64       `json:"min"`
-	Heater     string        `json:"heater"`
-	Cooler     string        `json:"cooler"`
-	Period     time.Duration `json:"period"`
-	Control    bool          `json:"control"`
-	Enable     bool          `json:"enable"`
-	Notify     Notify        `json:"notify"`
-	Sensor     string        `json:"sensor"`
-	Fahrenheit bool          `json:"fahrenheit"`
-	ChartMin   float64       `json:"chart_min"`
-	ChartMax   float64       `json:"chart_max"`
-}
-
-type Notify struct {
-	Enable bool    `json:"enable"`
-	Max    float64 `json:"max"`
-	Min    float64 `json:"min"`
-}
-
 func (c *client) TCs() ([]TC, error) {
 	var tcs []TC
 	return tcs, c.get("/api/tcs", &tcs)
@@ -47,4 +20,14 @@ func (c *client) DeleteTC(id string) error {
 
 func (c *client) UpdateTC(id string, o TC) error {
 	return c.post("/api/tcs/"+id, &o)
+}
+
+func (c *client) TCUsage(id string) (StatsResponse, error) {
+	var s StatsResponse
+	return s, c.get("/api/tcs/"+id+"/usage", &s)
+}
+
+func (c *client) TempSensors() ([]string, error) {
+	var sensors []string
+	return sensors, c.get("/api/tcs/sensors", &sensors)
 }

@@ -48,7 +48,7 @@ func TestLights(t *testing.T) {
 	for _, o := range lights {
 		fmt.Println(o.Name)
 	}
-	o.Name = "Bar"
+	o.Name = "client-test-light-updated"
 	if err := c.UpdateLight("1", o); err != nil {
 		t.Error(err)
 	}

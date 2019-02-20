@@ -1,32 +1,7 @@
 package cluster
 
-/*
-import (
-	"encoding/json"
-	"fmt"
-	"io/ioutil"
-	"net/http"
-)
-*/
-
-type Capabilities struct {
-	DevMode       bool `json:"dev_mode"`
-	Dashboard     bool `json:"dashboard"`
-	HealthCheck   bool `json:"health_check"`
-	Equipment     bool `json:"equipment"`
-	Timers        bool `json:"timers"`
-	Lighting      bool `json:"lighting"`
-	Temperature   bool `json:"temperature"`
-	ATO           bool `json:"ato"`
-	Camera        bool `json:"camera"`
-	Doser         bool `json:"doser"`
-	Ph            bool `json:"ph"`
-	Macro         bool `json:"macro"`
-	Configuration bool `json:"configuration"`
-}
-
 func (c *client) SignIn(u, p string) error {
-	cred := credential{
+	cred := Credentials{
 		User:     u,
 		Password: p,
 	}
@@ -54,16 +29,82 @@ func (c *client) Reload() error {
 	return c.post("/api/admin/reload", nil)
 }
 
-type Info struct {
-	Name           string `json:"name"`
-	IP             string `json:"ip"`
-	CurrentTime    string `json:"current_time"`
-	Uptime         string `json:"uptime"`
-	CPUTemperature string `json:"cpu_temperature"`
-	Version        string `json:"version"`
-}
-
 func (c *client) Info() (Info, error) {
 	var i Info
 	return i, c.get("/api/info", &i)
+}
+
+func (c *client) Settings() (Settings, error) {
+	var s Settings
+	return s, c.get("/api/settings", &s)
+}
+
+func (c *client) UpdateSettings(s Settings) error {
+	return c.post("/api/settings", &s)
+}
+
+func (c *client) UpdateCredentials(cr Credentials) error {
+	return c.post("/api/credentials", &cr)
+}
+
+func (c *client) Telemetry() (TelemetryConfig, error) {
+	var t TelemetryConfig
+	return t, c.get("/api/telemetry", &t)
+}
+
+func (c *client) UpdateTelemetry(t TelemetryConfig) error {
+	return c.post("/api/telemetry", &t)
+}
+
+func (c *client) SendTestMessage() error {
+	return c.post("/api/telemetry/test_message", nil)
+}
+
+func (c *client) ClearErrors() error {
+	return c.delete("/api/errors/clear")
+}
+
+func (c *client) DeleteError(id string) error {
+	return c.delete("/api/errors/" + id)
+}
+
+func (c *client) Errors() ([]Error, error) {
+	var errors []Error
+	return errors, c.get("/api/errors", &errors)
+}
+
+func (c *client) Error(id string) (Error, error) {
+	var err Error
+	return err, c.get("/api/errors/id/"+id, &err)
+}
+
+func (c *client) HealthStats() (StatsResponse, error) {
+	var hs StatsResponse
+	return hs, c.get("/api/health_stats", &hs)
+}
+
+func (c *client) Dashboard() (Dashboard, error) {
+	var ds Dashboard
+	return ds, c.get("/api/dashboard", &ds)
+}
+
+func (c *client) UpdateDashboard(ds Dashboard) error {
+	return c.post("/api/dashboard", &ds)
+}
+
+func (c *client) DisplayOn() error {
+	return c.post("/api/display/on", nil)
+}
+
+func (c *client) DisplayOff() error {
+	return c.post("/api/display/off", nil)
+}
+
+func (c *client) Display() (DisplayState, error) {
+	var ds DisplayState
+	return ds, c.get("/api/display", &ds)
+}
+
+func (c *client) UpdateDisplay(ds DisplayConfig) error {
+	return c.post("/api/display", &ds)
 }

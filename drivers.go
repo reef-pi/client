@@ -1,16 +1,5 @@
 package cluster
 
-import (
-	"encoding/json"
-)
-
-type Driver struct {
-	ID     string          `json:"id"`
-	Name   string          `json:"name"`
-	Type   string          `json:"type"`
-	Config json.RawMessage `json:"config"`
-}
-
 func (c *client) Drivers() ([]Driver, error) {
 	var ds []Driver
 	return ds, c.get("/api/drivers", &ds)

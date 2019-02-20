@@ -25,7 +25,7 @@ func TestTCs(t *testing.T) {
 	for _, o := range tcs {
 		fmt.Println(o.Name)
 	}
-	o.Name = "Bar"
+	o.Name = "client-test-tc-updated"
 	if err := c.UpdateTC("1", o); err != nil {
 		t.Error(err)
 	}

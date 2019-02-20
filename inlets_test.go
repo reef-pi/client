@@ -22,7 +22,7 @@ func TestInlets(t *testing.T) {
 	for _, o := range inlets {
 		fmt.Println(o.Name)
 	}
-	o.Name = "Bar"
+	o.Name = "client-test-inlet-updated"
 	if err := c.UpdateInlet("1", o); err != nil {
 		t.Error(err)
 	}

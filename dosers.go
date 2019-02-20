@@ -1,31 +1,5 @@
 package cluster
 
-type Pump struct {
-	ID       string         `json:"id"`
-	Name     string         `json:"name"`
-	Jack     string         `json:"jack"`
-	Pin      int            `json:"pin"`
-	Regiment DosingRegiment `json:"regiment"`
-}
-type DosingRegiment struct {
-	Enable   bool     `json:"enable"`
-	Schedule Schedule `json:"schedule"`
-	Duration float64  `json:"duration"`
-	Speed    float64  `json:"speed"`
-}
-
-type CalibrationDetails struct {
-	Speed    float64 `json:"speed"`
-	Duration float64 `json:"duration"`
-}
-
-type Schedule struct {
-	Day    string `json:"day"`
-	Hour   string `json:"hour"`
-	Minute string `json:"minute"`
-	Second string `json:"second"`
-}
-
 func (c *client) Dosers() ([]Pump, error) {
 	var dosers []Pump
 	return dosers, c.get("/api/doser/pumps", &dosers)
@@ -46,4 +20,17 @@ func (c *client) DeleteDoser(id string) error {
 
 func (c *client) UpdateDoser(id string, o Pump) error {
 	return c.post("/api/doser/pumps/"+id, &o)
+}
+
+func (c *client) DoserUsage(id string) (StatsResponse, error) {
+	var s StatsResponse
+	return s, c.get("/api/doser/pumps/"+id+"/usage", &s)
+}
+
+func (c *client) CalibrateDoser(id string, cal CalibrationDetails) error {
+	return c.post("/api/doser/pumps/"+id+"/calibrate", &cal)
+}
+
+func (c *client) ScheduleDoser(id string, s DosingRegiment) error {
+	return c.post("/api/doser/pumps/"+id+"/schedule", &s)
 }

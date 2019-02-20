@@ -1,14 +1,5 @@
 package cluster
 
-type Inlet struct {
-	ID        string `json:"id"`
-	Name      string `json:"name"`
-	Pin       int    `json:"pin"`
-	Equipment string `json:"equipment"`
-	Reverse   bool   `json:"reverse"`
-	Driver    string `json:"driver"`
-}
-
 func (c *client) Inlets() ([]Inlet, error) {
 	var inlets []Inlet
 	return inlets, c.get("/api/inlets", &inlets)
@@ -29,4 +20,9 @@ func (c *client) DeleteInlet(id string) error {
 
 func (c *client) UpdateInlet(id string, o Inlet) error {
 	return c.post("/api/inlets/"+id, &o)
+}
+
+func (c *client) ReadInlet(id string) (int, error) {
+	var i int
+	return i, c.postWithResponse("/api/inlets/"+id+"/read", nil, &i)
 }

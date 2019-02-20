@@ -22,7 +22,7 @@ func TestOutlets(t *testing.T) {
 	for _, o := range outlets {
 		fmt.Println(o.Name)
 	}
-	o.Name = "Bar"
+	o.Name = "client-test-outlet-updated"
 	if err := c.UpdateOutlet("1", o); err != nil {
 		t.Error(err)
 	}

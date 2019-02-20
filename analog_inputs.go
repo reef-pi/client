@@ -1,12 +1,5 @@
 package cluster
 
-type AnalogInput struct {
-	ID     string `json:"id"`
-	Name   string `json:"name"`
-	Pin    int    `json:"pin"`
-	Driver string `json:"driver"`
-}
-
 func (c *client) AnalogInputs() ([]AnalogInput, error) {
 	var ais []AnalogInput
 	return ais, c.get("/api/analog_inputs", &ais)
@@ -27,4 +20,9 @@ func (c *client) DeleteAnalogInput(id string) error {
 
 func (c *client) UpdateAnalogInput(id string, o AnalogInput) error {
 	return c.post("/api/analog_inputs/"+id, &o)
+}
+
+func (c *client) ReadAnalogInput(id string) (float64, error) {
+	var f float64
+	return f, c.postWithResponse("/api/analog_inputs/"+id+"/read", nil, &f)
 }

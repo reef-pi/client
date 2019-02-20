@@ -23,7 +23,7 @@ func TestDosers(t *testing.T) {
 	for _, o := range dosers {
 		fmt.Println(o.Name)
 	}
-	o.Name = "Bar"
+	o.Name = "client-test-doser-updated"
 	if err := c.UpdateDoser("1", o); err != nil {
 		t.Error(err)
 	}

@@ -1,14 +1,5 @@
 package cluster
 
-type Outlet struct {
-	ID        string `json:"id"`
-	Name      string `json:"name"`
-	Pin       int    `json:"pin"`
-	Equipment string `json:"equipment"`
-	Reverse   bool   `json:"reverse"`
-	Driver    string `json:"driver"`
-}
-
 func (c *client) Outlets() ([]Outlet, error) {
 	var outlets []Outlet
 	return outlets, c.get("/api/outlets", &outlets)
