@@ -1,4 +1,4 @@
-package cluster
+package client
 
 func (c *client) Lights() ([]Light, error) {
 	var lights []Light

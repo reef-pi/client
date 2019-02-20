@@ -1,4 +1,4 @@
-package cluster
+package client
 
 func (c *client) ListEquipment() ([]Equipment, error) {
 	var eqs []Equipment

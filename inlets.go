@@ -1,4 +1,4 @@
-package cluster
+package client
 
 func (c *client) Inlets() ([]Inlet, error) {
 	var inlets []Inlet

@@ -1,4 +1,4 @@
-package cluster
+package client
 
 func (c *client) Outlets() ([]Outlet, error) {
 	var outlets []Outlet

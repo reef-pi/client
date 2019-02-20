@@ -1,4 +1,4 @@
-package cluster
+package client
 
 func (c *client) Macros() ([]Macro, error) {
 	var macros []Macro

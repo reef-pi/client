@@ -1,8 +1,11 @@
-# reef-pi/cluster manager
+# reef-pi/client
 
-Manage a set of reef-pi instances
+An http client library for [reef-pi](http://reef-pi.com)
 
-## Features  (TODO)
+[![GoDoc](https://godoc.org/github.com/reef-pi/client?status.svg)](https://godoc.org/github.com/reef-pi/client)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/reef-pi/client/blob/master/LICENSE.txt)
+
+## Example
 
 P0
 - CRUD operation of reef-pi instances

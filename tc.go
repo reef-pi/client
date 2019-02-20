@@ -1,4 +1,4 @@
-package cluster
+package client
 
 func (c *client) TCs() ([]TC, error) {
 	var tcs []TC

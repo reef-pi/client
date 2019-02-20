@@ -1,4 +1,4 @@
-package cluster
+package client
 
 func (c *client) AnalogInputs() ([]AnalogInput, error) {
 	var ais []AnalogInput

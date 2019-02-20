@@ -1,4 +1,4 @@
-package cluster
+package client
 
 func (c *client) ATOs() ([]ATO, error) {
 	var atos []ATO

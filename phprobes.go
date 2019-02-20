@@ -1,4 +1,4 @@
-package cluster
+package client
 
 func (c *client) PhProbes() ([]Probe, error) {
 	var probes []Probe

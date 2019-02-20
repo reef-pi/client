@@ -1,4 +1,4 @@
-package cluster
+package client
 
 func (c *client) Timers() ([]Job, error) {
 	var timers []Job

@@ -1,4 +1,4 @@
-package cluster
+package client
 
 func (c *client) TakePhoto() error {
 	return c.post("/api/camera/shoot", nil)

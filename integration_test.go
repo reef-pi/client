@@ -1,4 +1,4 @@
-package cluster
+package client
 
 import (
 	"testing"
@@ -7,7 +7,7 @@ import (
 func signIn(t *testing.T) *client {
 	//u := "http://garage.local"
 	u := "http://localhost:8080"
-	c, err := NewClient(u)
+	c, err := New(u)
 	if err != nil {
 		t.Fatal(err)
 	}

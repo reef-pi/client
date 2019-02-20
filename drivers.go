@@ -1,4 +1,4 @@
-package cluster
+package client
 
 func (c *client) Drivers() ([]Driver, error) {
 	var ds []Driver

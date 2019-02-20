@@ -1,4 +1,4 @@
-package cluster
+package client
 
 import (
 	"bytes"
@@ -15,7 +15,7 @@ type client struct {
 	c *http.Client
 }
 
-func NewClient(u string) (*client, error) {
+func New(u string) (*client, error) {
 	jar, err := cookiejar.New(nil)
 	if err != nil {
 		return nil, err

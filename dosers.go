@@ -1,4 +1,4 @@
-package cluster
+package client
 
 func (c *client) Dosers() ([]Pump, error) {
 	var dosers []Pump

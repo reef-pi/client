@@ -1,4 +1,4 @@
-package cluster
+package client
 
 func (c *client) Jacks() ([]Jack, error) {
 	var jacks []Jack
