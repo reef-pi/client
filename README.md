@@ -12,6 +12,10 @@ An http client library for [reef-pi](http://reef-pi.com)
   if err != nil {
     panic(err)
   }
+  if err := c.SignIn("reef-pi","reef-pi"); err != nil {
+    panic(err)
+  }
+  defer c.SignOut()
   outlets, err := c.Outlets()
   if err != nil {
     panic(err)
