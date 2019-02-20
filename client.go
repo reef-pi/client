@@ -10,12 +10,12 @@ import (
 	"time"
 )
 
-type client struct {
+type Client struct {
 	u string
 	c *http.Client
 }
 
-func New(u string) (*client, error) {
+func New(u string) (*Client, error) {
 	jar, err := cookiejar.New(nil)
 	if err != nil {
 		return nil, err
@@ -24,13 +24,13 @@ func New(u string) (*client, error) {
 		Timeout: time.Second * 10,
 		Jar:     jar,
 	}
-	return &client{
+	return &Client{
 		u: u,
 		c: c,
 	}, nil
 }
 
-func (c *client) get(p string, v interface{}) error {
+func (c *Client) get(p string, v interface{}) error {
 	resp, err := c.c.Get(c.u + p)
 	if err != nil {
 		return err
@@ -45,7 +45,7 @@ func (c *client) get(p string, v interface{}) error {
 	}
 	return json.NewDecoder(resp.Body).Decode(v)
 }
-func (c *client) postWithResponse(p string, v interface{}, ret interface{}) error {
+func (c *Client) postWithResponse(p string, v interface{}, ret interface{}) error {
 	buf := new(bytes.Buffer)
 	if v != nil {
 		if err := json.NewEncoder(buf).Encode(v); err != nil {
@@ -71,10 +71,10 @@ func (c *client) postWithResponse(p string, v interface{}, ret interface{}) erro
 	return json.NewDecoder(resp.Body).Decode(ret)
 }
 
-func (c *client) post(p string, v interface{}) error {
+func (c *Client) post(p string, v interface{}) error {
 	return c.postWithResponse(p, v, nil)
 }
-func (c *client) put(p string, v interface{}) error {
+func (c *Client) put(p string, v interface{}) error {
 	buf := new(bytes.Buffer)
 	if v != nil {
 		if err := json.NewEncoder(buf).Encode(v); err != nil {
@@ -97,7 +97,7 @@ func (c *client) put(p string, v interface{}) error {
 	return nil
 }
 
-func (c *client) delete(p string) error {
+func (c *Client) delete(p string) error {
 	buf := new(bytes.Buffer)
 	req, err := http.NewRequest("DELETE", c.u+p, buf)
 	if err != nil {

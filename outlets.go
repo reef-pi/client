@@ -1,23 +1,23 @@
 package client
 
-func (c *client) Outlets() ([]Outlet, error) {
+func (c *Client) Outlets() ([]Outlet, error) {
 	var outlets []Outlet
 	return outlets, c.get("/api/outlets", &outlets)
 }
 
-func (c *client) Outlet(id string) (Outlet, error) {
+func (c *Client) Outlet(id string) (Outlet, error) {
 	var outlet Outlet
 	return outlet, c.get("/api/outlets/"+id, &outlet)
 }
 
-func (c *client) CreateOutlet(o Outlet) error {
+func (c *Client) CreateOutlet(o Outlet) error {
 	return c.put("/api/outlets", &o)
 }
 
-func (c *client) DeleteOutlet(id string) error {
+func (c *Client) DeleteOutlet(id string) error {
 	return c.delete("/api/outlets/" + id)
 }
 
-func (c *client) UpdateOutlet(id string, o Outlet) error {
+func (c *Client) UpdateOutlet(id string, o Outlet) error {
 	return c.post("/api/outlets/"+id, &o)
 }

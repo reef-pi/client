@@ -1,23 +1,23 @@
 package client
 
-func (c *client) Timers() ([]Job, error) {
+func (c *Client) Timers() ([]Job, error) {
 	var timers []Job
 	return timers, c.get("/api/timers", &timers)
 }
 
-func (c *client) Timer(id string) (Job, error) {
+func (c *Client) Timer(id string) (Job, error) {
 	var timer Job
 	return timer, c.get("/api/timers/"+id, &timer)
 }
 
-func (c *client) CreateTimer(o Job) error {
+func (c *Client) CreateTimer(o Job) error {
 	return c.put("/api/timers", &o)
 }
 
-func (c *client) DeleteTimer(id string) error {
+func (c *Client) DeleteTimer(id string) error {
 	return c.delete("/api/timers/" + id)
 }
 
-func (c *client) UpdateTimer(id string, o Job) error {
+func (c *Client) UpdateTimer(id string, o Job) error {
 	return c.post("/api/timers/"+id, &o)
 }
