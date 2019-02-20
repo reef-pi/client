@@ -7,13 +7,16 @@ An http client library for [reef-pi](http://reef-pi.com)
 
 ## Example
 
-P0
-- CRUD operation of reef-pi instances
-  - /instances
-- Instance specific reef-pi UI from same page
-  - Full reef-pi API?
-
-P1
-- Dispatch system commands (raspbian update, raspi-config, reef-pi upgrade)
-- Central dashboard composed of any number of indiviudual instances
-- Macro combining different instances
+```go
+  c, err := New("http://reef-pi.local")
+  if err != nil {
+    panic(err)
+  }
+  outlets, err := c.Outlets()
+  if err != nil {
+    panic(err)
+  }
+  for _, outlet := range outlets {
+     fmt.Println(outlet.Name)
+  }
+```
